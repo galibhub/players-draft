@@ -1,28 +1,19 @@
-import React from 'react';
+import React from "react";
+import SelectedCard from "../SelectedCard/SelectedCard";
 
-const SelectedPlayers = ({purchasedPlayers}) => {
-  
-    return (
-        <div className="max-w-[1200px] mx-auto">
-            
-        <div className="border-2 border-gray-500 p-4 flex justify-between items-center rounded-xl">
+const SelectedPlayers = ({ purchasedPlayers }) => {
+  return (
+    <div className="max-w-[1200px] mx-auto">
+      
 
-    <div className="flex items-center">
-        <img className="h-[5opx] w-[50px] rounded-xl" src="https://i.ibb.co.com/Z1YLNV6n/tamim.png" alt="" />
+{
 
-        <div className="ml-2">
-            <h1 className="font-bold ">Tamim Iqbal</h1>
-            <p className="text-xs">Left Hand Bat</p>
-        </div>
+  purchasedPlayers.map(player=><SelectedCard player={player}></SelectedCard>)
+
+}
+
     </div>
-    <div>
-        <img src="https://i.ibb.co.com/Y4zgZF8Z/Frame.png" alt="" />
-    </div>
-        
-        </div>
-
-        </div>
-    );
+  );
 };
 
 export default SelectedPlayers;
