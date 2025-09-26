@@ -1,7 +1,7 @@
 import React, { use } from "react";
-import userImg from "../../assets/user-1.png";
-import flagImg from "../../assets/report-1.png";
-const AvilablePlayers = ({ playersPromise }) => {
+
+import PlayerCard from "../PlayerCard/PlayerCard";
+const AvilablePlayers = ({ playersPromise,setAvilableBalance,avilableBalance }) => {
   const playerData = use(playersPromise);
   console.log(playerData);
   return (
@@ -9,46 +9,8 @@ const AvilablePlayers = ({ playersPromise }) => {
 
       {
       
-      playerData.map((player) => (
-
-        <div className="card bg-base-100 shadow-sm p-4">
-          <figure>
-            <img className="w-full h-[250px] object-cover"
-              src={player.player_image}
-              alt="Shoes"
-            />
-          </figure>
-          <div className="mt-4">
-            <div className="flex">
-              <img src={userImg} alt="" />
-              <h2 className="card-title ml-2">{player.player_name}</h2>
-            </div>
-
-            <div className="flex justify-between  mt-4 border-gray-400 border-b-1 pb-2">
-              <div className="flex items-center ">
-                <img className="w-[20px] h-[20px] " src={flagImg} alt="" />
-                <span className="ml-2">{player.player_country}</span>
-              </div>
-              <button className="btn">{player.playing_role}</button>
-            </div>
-
-            <div className="flex justify-between items-center font-bold">
-              <span>Rating</span>
-              <span>{player.rating}</span>
-            </div>
-
-            <div className="flex justify-between items-center mt-4">
-              <span className="font-bold">{player.bating_style}</span>
-              <span>{player.bowling_style}</span>
-            </div>
-
-            <div className="card-actions mt-3 flex justify-between items-center">
-              <p className="font-bold">price: ${player.price}</p>
-              <button className="btn btn-primary">Choose Player</button>
-            </div>
-          </div>
-        </div>
-      ))}
+      playerData.map(player => <PlayerCard player={player} avilableBalance={avilableBalance} setAvilableBalance={setAvilableBalance}> </PlayerCard>
+      )}
     </div>
   );
 };

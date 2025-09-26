@@ -8,14 +8,15 @@ const fetchPlayers = async () => {
   const res = await fetch("/players.json");
   return res.json();
 };
-
+const playersPromise = fetchPlayers();
 function App() {
   const [toggle, setToggle] = useState(true);
-
-  const playersPromise = fetchPlayers();
+const [avilableBalance,setAvilableBalance]=useState(6000000)
+  
+  
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar avilableBalance={avilableBalance}></Navbar>
 
       <div className=" max-w-[1200px] mx-auto flex justify-between items-center">
         <h1 className="font-bold text-2xl">Avilable Players</h1>
@@ -37,7 +38,7 @@ function App() {
             <span className="loading loading-spinner loading-xl"></span>
           }
         >
-          <AvilablePlayers playersPromise={playersPromise}></AvilablePlayers>
+          <AvilablePlayers playersPromise={playersPromise} avilableBalance={avilableBalance}  setAvilableBalance={setAvilableBalance}></AvilablePlayers>
         </Suspense>
       ) : (
         <SelectedPlayers></SelectedPlayers>
