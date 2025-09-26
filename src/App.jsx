@@ -20,6 +20,7 @@ function App() {
       (ply) => ply.player_name !== p.player_name
     );
     setPurchasedPlayers(filteredData);
+    setAvilableBalance(avilableBalance+parseInt(p.price.split("USD").join("").split(",").join("")));
   };
 
   return (
