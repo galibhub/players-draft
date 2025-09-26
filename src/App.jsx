@@ -11,41 +11,67 @@ const fetchPlayers = async () => {
 const playersPromise = fetchPlayers();
 function App() {
   const [toggle, setToggle] = useState(true);
-const [avilableBalance,setAvilableBalance]=useState(600000)
+  const [avilableBalance, setAvilableBalance] = useState(600000);
 
-const [purchasedPlayers,setPurchasedPlayers]=useState([])
-  
-  
+  const [purchasedPlayers, setPurchasedPlayers] = useState([]);
+
+  const removePlayer = (p) => {
+    const filteredData = purchasedPlayers.filter(
+      (ply) => ply.player_name !== p.player_name
+    );
+    setPurchasedPlayers(filteredData);
+  };
+
   return (
     <>
       <Navbar avilableBalance={avilableBalance}></Navbar>
 
       <div className=" max-w-[1200px] mx-auto flex justify-between items-center">
-        <h1 className="font-bold text-2xl">{toggle===true?"Avilable Players":`Selected Player (${purchasedPlayers.length}/6)`}</h1>
+        <h1 className="font-bold text-2xl">
+          {toggle === true
+            ? "Avilable Players"
+            : `Selected Player (${purchasedPlayers.length}/6)`}
+        </h1>
         <div className="font-bold">
-          <button onClick={()=>setToggle(true)} className={`py-3 px-4 border-1 border-gray-400 rounded-l-2xl border-r-0 ${toggle===true ?"bg-[#E7Fe29]":""}`}>
+          <button
+            onClick={() => setToggle(true)}
+            className={`py-3 px-4 border-1 border-gray-400 rounded-l-2xl border-r-0 ${
+              toggle === true ? "bg-[#E7Fe29]" : ""
+            }`}
+          >
             Avilable
           </button>
-          <button onClick={()=>setToggle(false)} className={`py-3 px-4 border-1 border-gray-400 rounded-r-2xl border-l-0 ${toggle===false?"bg-[#E7Fe29]":""}`}>
+          <button
+            onClick={() => setToggle(false)}
+            className={`py-3 px-4 border-1 border-gray-400 rounded-r-2xl border-l-0 ${
+              toggle === false ? "bg-[#E7Fe29]" : ""
+            }`}
+          >
             Selected <span>({purchasedPlayers.length})</span>
           </button>
         </div>
       </div>
 
-      {
-      
-      toggle === true ? 
+      {toggle === true ? (
         <Suspense
           fallback={
             <span className="loading loading-spinner loading-xl"></span>
           }
         >
-          <AvilablePlayers playersPromise={playersPromise} avilableBalance={avilableBalance}  setAvilableBalance={setAvilableBalance}  purchasedPlayers={purchasedPlayers} setPurchasedPlayers={setPurchasedPlayers} ></AvilablePlayers>
+          <AvilablePlayers
+            playersPromise={playersPromise}
+            avilableBalance={avilableBalance}
+            setAvilableBalance={setAvilableBalance}
+            purchasedPlayers={purchasedPlayers}
+            setPurchasedPlayers={setPurchasedPlayers}
+          ></AvilablePlayers>
         </Suspense>
-       : (
-        <SelectedPlayers purchasedPlayers={purchasedPlayers}></SelectedPlayers>
-      )
-      }
+      ) : (
+        <SelectedPlayers
+          purchasedPlayers={purchasedPlayers}
+          removePlayer={removePlayer}
+        ></SelectedPlayers>
+      )}
     </>
   );
 }

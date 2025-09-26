@@ -1,6 +1,11 @@
 import React from 'react';
 
-const SelectedCard = ({player}) => {
+const SelectedCard = ({player,purchasedPlayers,removePlayer}) => {
+
+    const handleRemove=()=>{
+removePlayer(player)
+
+    }
 
     console.log(player)
     return (
@@ -17,7 +22,7 @@ const SelectedCard = ({player}) => {
             <p className="text-xs">{player.playing_role}</p>
           </div>
         </div>
-        <div>
+        <div onClick={handleRemove}>
           <img src="https://i.ibb.co.com/Y4zgZF8Z/Frame.png" alt="" />
         </div>
       </div>
