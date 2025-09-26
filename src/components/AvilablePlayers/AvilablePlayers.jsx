@@ -1,7 +1,7 @@
 import React, { use } from "react";
 
 import PlayerCard from "../PlayerCard/PlayerCard";
-const AvilablePlayers = ({ playersPromise,setAvilableBalance,avilableBalance }) => {
+const AvilablePlayers = ({ playersPromise,setAvilableBalance,avilableBalance,purchasedPlayers,setPurchasedPlayers }) => {
   const playerData = use(playersPromise);
   console.log(playerData);
   return (
@@ -9,7 +9,7 @@ const AvilablePlayers = ({ playersPromise,setAvilableBalance,avilableBalance }) 
 
       {
       
-      playerData.map(player => <PlayerCard player={player} avilableBalance={avilableBalance} setAvilableBalance={setAvilableBalance}> </PlayerCard>
+      playerData.map(player => <PlayerCard player={player} avilableBalance={avilableBalance} setAvilableBalance={setAvilableBalance} purchasedPlayers={purchasedPlayers} setPurchasedPlayers={setPurchasedPlayers}> </PlayerCard>
       )}
     </div>
   );

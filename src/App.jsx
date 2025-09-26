@@ -12,6 +12,8 @@ const playersPromise = fetchPlayers();
 function App() {
   const [toggle, setToggle] = useState(true);
 const [avilableBalance,setAvilableBalance]=useState(600000)
+
+const [purchasedPlayers,setPurchasedPlayers]=useState([])
   
   
   return (
@@ -32,16 +34,16 @@ const [avilableBalance,setAvilableBalance]=useState(600000)
 
       {
       
-      toggle === true ? (
+      toggle === true ? 
         <Suspense
           fallback={
             <span className="loading loading-spinner loading-xl"></span>
           }
         >
-          <AvilablePlayers playersPromise={playersPromise} avilableBalance={avilableBalance}  setAvilableBalance={setAvilableBalance}></AvilablePlayers>
+          <AvilablePlayers playersPromise={playersPromise} avilableBalance={avilableBalance}  setAvilableBalance={setAvilableBalance}  purchasedPlayers={purchasedPlayers} setPurchasedPlayers={setPurchasedPlayers} ></AvilablePlayers>
         </Suspense>
-      ) : (
-        <SelectedPlayers></SelectedPlayers>
+       : (
+        <SelectedPlayers purchasedPlayers={purchasedPlayers}></SelectedPlayers>
       )
       }
     </>
