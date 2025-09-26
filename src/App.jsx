@@ -3,7 +3,7 @@ import "./App.css";
 import AvilablePlayers from "./components/AvilablePlayers/AvilablePlayers";
 import Navbar from "./components/Navbar/Navbar";
 import SelectedPlayers from "./components/SelectedPlayers/SelectedPlayers";
-
+import { ToastContainer} from 'react-toastify';
 const fetchPlayers = async () => {
   const res = await fetch("/players.json");
   return res.json();
@@ -11,7 +11,7 @@ const fetchPlayers = async () => {
 const playersPromise = fetchPlayers();
 function App() {
   const [toggle, setToggle] = useState(true);
-  const [avilableBalance, setAvilableBalance] = useState(600000);
+  const [avilableBalance, setAvilableBalance] = useState(6000000);
 
   const [purchasedPlayers, setPurchasedPlayers] = useState([]);
 
@@ -73,6 +73,8 @@ function App() {
           removePlayer={removePlayer}
         ></SelectedPlayers>
       )}
+
+      <ToastContainer/>
     </>
   );
 }
