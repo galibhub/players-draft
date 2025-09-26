@@ -6,9 +6,15 @@ const PlayerCard = ({ player, setAvilableBalance, avilableBalance }) => {
   const [isSelected, setIsSelected] = useState(false);
 
   const handleSelected = (playerData) => {
+    const playerPrice=parseInt(playerData.price.split("USD").join("").split(",").join(""))
+    if(avilableBalance<playerPrice)
+    {
+        alert("Not Enough Coin")
+        return
+    }
     setIsSelected(true);
     setAvilableBalance(
-      avilableBalance - playerData.price.split("USD").join("").split(",").join("")
+      avilableBalance - playerPrice
     );
   };
 
